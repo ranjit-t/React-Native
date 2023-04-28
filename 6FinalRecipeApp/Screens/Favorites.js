@@ -16,7 +16,11 @@ const Favorites = () => {
     const gettingStorage = async () => {
       let localItems = await AsyncStorage.getItem("myRecipes");
       let parsedLocalItems = JSON.parse(localItems);
-      setExistingFavRecipes(parsedLocalItems);
+      if (parsedLocalItems) {
+        setExistingFavRecipes(parsedLocalItems);
+      } else {
+        setExistingFavRecipes([]);
+      }
     };
     gettingStorage();
   }, [FavPressed]);
